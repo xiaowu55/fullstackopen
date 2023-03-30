@@ -4,18 +4,24 @@ const Header = props => <h1 >{props.title}</h1>
 
 const Button = props => <button onClick={props.onClick}>{props.name}</button>
 
-const Content = props => <p>{props.name}  {props.degree}</p>
 
-const Statistics = ({statistics}) => {
+const Statistics = (props) => {
   
+  console.log(props);
+  return (<table><tbody>
+            <StatisticLine text='good' value={props.statistics.good}/>
+            <StatisticLine text='neutral' value={props.statistics.neutral}/>
+            <StatisticLine text='bad' value={props.statistics.bad}/>
+            <StatisticLine text='all' value={props.statistics.all}/>
+            <StatisticLine text='average' value={props.statistics.average}/>
+            <StatisticLine text='positive' value={props.statistics.positive}/>
 
-  return (<><StatisticLine text='all' value={statistics.all}/>
-            <StatisticLine text='average' value={statistics.average}/>
-            <StatisticLine text='positive' value={statistics.positive}/>
-           </>)
+    </tbody></table>
+            
+           )
 }
 
-const StatisticLine = props => <p>{props.text} {props.value}</p>
+const StatisticLine = props => <tr><td>{props.text}</td><td>{props.value}</td></tr>
 
 
 const App = () => {
@@ -63,19 +69,17 @@ const App = () => {
 
    
   return (
-    <div>
+    <>
       <Header title='give feedback'/>
       <Button name='good' onClick={()=>clickHandle('good')}/>
       <Button name='neutral' onClick={()=>clickHandle('neutral')}/>
       <Button name='bad' onClick={()=>clickHandle('bad')} />
       <Header title='statistics'/>
 
-      {statistics.all!==0&&<><Content name='good' degree={good}/>
-      <Content name='neutral' degree={neutral}/>
-      <Content name='bad' degree={bad}/>
-      <Statistics statistics={statistics}/></>
+      {statistics.all!==0&&<>
+      <Statistics statistics={{...statistics,good:good,neutral:neutral,bad:bad}}/></>
 }
-    </div>
+    </>
   )
 }
 
