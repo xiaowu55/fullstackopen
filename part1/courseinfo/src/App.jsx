@@ -14,22 +14,24 @@ const App = () => {
   }
 
   const Content = (props) => { 
-    const {part,exercises} = props
-    let newpart = []
+ 
     
-    for(let i = 0;i<part.length;i++){
-     
-      newpart.push(part[i],exercises[i])
-    }
-     
-      const result = newpart.map((newpart)=>(<p>{newpart}</p>))
-      return (
-        
-        <>{result}</>
-      )
-    
+    const Part = (props) => { 
+      const {part,exercises} = props
 
-    
+      return (
+        <p>
+        {part} {exercises}
+      </p>
+      )
+     }
+      return (
+        <div>
+          <Part part={part1} exercises={exercises1}/>
+          <Part part={part2} exercises={exercises2}/>
+          <Part part={part3} exercises={exercises3}/>
+        </div>
+      )
    }
 
    const Total = (props) => { 
