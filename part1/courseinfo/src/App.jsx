@@ -9,11 +9,14 @@ const Content = props => <p>{props.name}  {props.degree}</p>
 const Statistics = ({statistics}) => {
   
 
-  return (<><p>all  {statistics.all}</p>
-            <p>average  {statistics.average}</p>
-            <p>positive  {statistics.positive} %</p>
+  return (<><StatisticLine text='all' value={statistics.all}/>
+            <StatisticLine text='average' value={statistics.average}/>
+            <StatisticLine text='positive' value={statistics.positive}/>
            </>)
 }
+
+const StatisticLine = props => <p>{props.text} {props.value}</p>
+
 
 const App = () => {
   // save clicks of each button to its own state
