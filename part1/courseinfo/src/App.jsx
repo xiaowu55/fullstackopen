@@ -11,19 +11,31 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [all,setAll] = useState(0)
+  const [grade,setGrade] = useState(0)
+  // const [average,setAverage] = useState(0)
+  // const [positive,setPositive] = useState(0)
+
+  let average,positive =0
+
+  average = grade/all
+
+  positive = good/all
 
   console.log('re');
 
   const clickHandle = (props) => { 
-    console.log(props);
+    setAll(all+1)
     if(props==='good'){
       setGood(good+1)
+      setGrade(grade+1)
     }
     else if(props==='neutral'){
       setNeutral(neutral+1)
     }
     else{
       setBad(bad+1)
+      setGrade(grade-1)
     }
    }
 
@@ -37,6 +49,9 @@ const App = () => {
       <Content name='good' degree={good}/>
       <Content name='neutral' degree={neutral}/>
       <Content name='bad' degree={bad}/>
+      <Content name='all' degree={all}/>
+      <Content name='average' degree={average}/>
+      <Content name='positive' degree={positive}/>
     </div>
   )
 }
