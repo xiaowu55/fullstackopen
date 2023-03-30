@@ -40,9 +40,8 @@ const App = () => {
     statistics.all=statistics.all+1
     if(props==='good'){
       newgood = good+1
-      
       setGood(newgood)
-     
+    
     }
     else if(props==='neutral'){
       setNeutral(neutral+1)
@@ -58,6 +57,8 @@ const App = () => {
     setStatistics(newstatistics)
    }
 
+
+   
   return (
     <div>
       <Header title='give feedback'/>
@@ -65,10 +66,12 @@ const App = () => {
       <Button name='neutral' onClick={()=>clickHandle('neutral')}/>
       <Button name='bad' onClick={()=>clickHandle('bad')} />
       <Header title='statistics'/>
-      <Content name='good' degree={good}/>
+
+      {statistics.all!==0&&<><Content name='good' degree={good}/>
       <Content name='neutral' degree={neutral}/>
       <Content name='bad' degree={bad}/>
-      <Statistics statistics={statistics}/>
+      <Statistics statistics={statistics}/></>
+}
     </div>
   )
 }
