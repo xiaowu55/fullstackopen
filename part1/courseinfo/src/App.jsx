@@ -1,87 +1,27 @@
-const Header = (props) => {
-  const {course} = props
-  return <h1>{course}</h1>
-}
+import { useState } from 'react'
 
+const Header = props => <h1>{props.title}</h1>
 
+const Button = props => <button>{props.name}</button>
 
-
-const Content = ({part,exercises}) => { 
- 
-    console.log(part);
-  
-    return (
-      <div>
-        {/* <Part part={part1.name} exercises={part1.exercises}/>
-        <Part part={part2.name} exercises={part2.exercises}/>
-        <Part part={part3.name} exercises={part3.exercises}/> */
-        <>
-          <Part part={part[0].name} exercises={part[0].exercises}/>
-          <Part part={part[1].name} exercises={part[1].exercises}/>
-          <Part part={part[2].name} exercises={part[2].exercises}/>
-        </>
-        }
-      </div>
-    )
- }
-
-
-
- const Part = (props) => { 
-  const {part,exercises} = props
-
-  return (
-    <p>
-    {part} {exercises}
-  </p>
-  )
- }
-
-
-
-
-const Total = (props) => { 
-
-  const {exercises} = props
-
-
-  const total = exercises[0].exercises+exercises[1].exercises+exercises[2].exercises
-
-  return (
-    <p>Number of exercises{total}</p>
-  )
-
- }
-
+const Content = props => <p>{props.name}  {props.degree}</p>
 
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
-
-
- 
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
   return (
     <div>
-      <Header course={course.name}/>
-      <Content part={course.parts} exercises={course.parts}/>
-      <Total exercises={course.parts}/>
-      
+      <Header title='give feedback'/>
+      <Button name='good' />
+      <Button name='neutral' />
+      <Button name='bad' />
+      <Header title='statistics'/>
+      <Content name='good' degree={good}/>
+      <Content name='neutral' degree={neutral}/>
+      <Content name='bad' degree={bad}/>
     </div>
   )
 }
