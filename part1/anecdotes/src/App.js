@@ -28,7 +28,6 @@ const App = () => {
 
   const clickHandle = () =>{
     let num = getRandomInt(0,7)
-    console.log(num);
     setSelected(num)
   }
 
@@ -40,11 +39,19 @@ const App = () => {
       console.log(copypoints)
    }
 
+  const mostvote = (a,b,...c) => { 
+    return Math.max(Math.max(a,b),...c)
+   }
+   console.log();
+  
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <Button onClick={clickHandle}  name='next anecodote'/>
       <Button onClick={voteHandle}  name='vote'/>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[vote.indexOf(mostvote(...vote))]}
 
     </div>
   )
