@@ -5,10 +5,13 @@ import Content from "./Content";
 
 
 export const Course = ({course}) => {
+
+  
   return (
     <div>
         <Header course={course.name}/>
-        <Content part={course.parts} exercises={course.parts}/>
+        <Content part={course.parts}/>
+
     </div>
   )
 }
