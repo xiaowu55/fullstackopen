@@ -4,11 +4,11 @@ import Part from "./Part";
 const Content = ({part}) => { 
  
     
-    console.log(part[0].exercises);
+    // console.log(part[0].exercises);
 
     const totalresult = part.reduce((accumulator,currentValue)=>{
        
-        console.log(accumulator,currentValue.exercises);
+        // console.log(accumulator,currentValue.exercises);
 
         
         return  accumulator+currentValue.exercises
