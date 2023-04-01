@@ -4,9 +4,15 @@ import Part from "./Part";
 const Content = ({part}) => { 
  
     
-    console.log(part);
+    // console.log(part[0].exercises);
 
-    const totalresult = part.reduce((a,c)=>a+c,0)
+    const totalresult = part.reduce((accumulator,currentValue)=>{
+       
+        console.log(accumulator,currentValue.exercises);
+
+        
+        return  accumulator+currentValue.exercises
+    },0)
   
     return (
       <div>
