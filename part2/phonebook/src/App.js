@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Filter } from './components/Filter'
 import { PersonForm } from './components/PersonForm'
 import { Person } from './components/Person'
+import axios from 'axios'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -16,21 +17,27 @@ const App = () => {
   const [filterData,setFilterData] =useState([])
   
 
+  useEffect(()=>{
+    const promise = axios.get('http://localhost:3001/persons')
 
-  const onSubmitHandle = (event) => { 
+    promise.then((Response)=>console.log(Response.data))
+  
+  },[])
+
+  function onSubmitHandle(event) {
     event.preventDefault()
-    console.log(persons);
+    console.log(persons)
 
-    for(let i =0;i<persons.length;i++){
-        if(persons[i].name===newName){
-          alert(`${newName} is already added to phonebook`)
-          return
-        }
+    for (let i = 0; i < persons.length; i++) {
+      if (persons[i].name === newName) {
+        alert(`${newName} is already added to phonebook`)
+        return
       }
+    }
 
-    setPersons(persons.concat({name:newName,number:newNummber}))
-    
-   }
+    setPersons(persons.concat({ name: newName, number: newNummber }))
+
+  }
 
   const onInputNameHandle = (event) =>{
     setNewName(event.target.value)

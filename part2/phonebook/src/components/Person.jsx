@@ -3,7 +3,7 @@ import React from 'react'
 export const Person = (props) => {
 
     const {filterData,persons} = props
-    console.log(filterData);
+    
 
   return (
     filterData.length===0
