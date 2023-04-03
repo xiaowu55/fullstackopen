@@ -4,6 +4,8 @@ import { PersonForm } from './components/PersonForm'
 import { Person } from './components/Person'
 import axios from 'axios'
 
+import phoneService from './services/phonebook'
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -18,12 +20,9 @@ const App = () => {
   
 
   useEffect(()=>{
-    const promise = axios.get('http://localhost:3001/persons')
+    phoneService.getAll().then(res=>setPersons(res))
 
-    promise.then((Response)=>{
-      setPersons(Response.data)
-    })
-  
+   
   },[])
 
   function onSubmitHandle(event) {
@@ -44,12 +43,9 @@ const App = () => {
         id:persons.length+1
       }
 
-  
-      axios
-           .post('http://localhost:3001/persons',personObject)
-           .then(res=>{
-            console.log(res.data)
-            setPersons(persons.concat(res.data))
+      phoneService.create(personObject).then(res=>{
+            console.log(res)
+            setPersons(persons.concat(res))
           })
     
       
