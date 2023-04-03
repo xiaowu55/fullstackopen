@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { Filter } from './components/Filter'
 import { PersonForm } from './components/PersonForm'
 import { Person } from './components/Person'
+import { Notification } from './components/Notification'
 import axios from 'axios'
+import './index.css'
 
 import phoneService from './services/phonebook'
 
@@ -17,6 +19,7 @@ const App = () => {
   const [newNummber,setNewNummber] = useState(0)
   const [showData,setShowData] = useState('')
   const [filterData,setFilterData] =useState([])
+  const [errorMessage,setErrorMessage] = useState(null)
   
 
   useEffect(()=>{
@@ -46,7 +49,15 @@ const App = () => {
       phoneService.create(personObject).then(res=>{
             console.log(res)
             setPersons(persons.concat(res))
-          })
+            throw(res)
+          }).catch(
+            res=>{
+            console.log(res.name);
+            setErrorMessage(`add ${res.name}`)
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 5000)}
+          )
     
       
       
@@ -87,6 +98,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage}/>
       <Filter filterDataHandle={filterDataHandle} showDataHandler={showDataHandler}/>
       <h2>add a new</h2>
       <PersonForm onInputNameHandle={onInputNameHandle} onInputNummberHandle={onInputNummberHandle} onSubmitHandle={onSubmitHandle}/>
