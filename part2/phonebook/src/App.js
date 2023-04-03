@@ -20,7 +20,9 @@ const App = () => {
   useEffect(()=>{
     const promise = axios.get('http://localhost:3001/persons')
 
-    promise.then((Response)=>console.log(Response.data))
+    promise.then((Response)=>{
+      setPersons(Response.data)
+    })
   
   },[])
 
@@ -35,7 +37,25 @@ const App = () => {
       }
     }
 
-    setPersons(persons.concat({ name: newName, number: newNummber }))
+    
+      const personObject = {
+        name:newName,
+        number:newNummber,
+        id:persons.length+1
+      }
+
+  
+      axios
+           .post('http://localhost:3001/persons',personObject)
+           .then(res=>{
+            console.log(res.data)
+            setPersons(persons.concat(res.data))
+          })
+    
+      
+      
+
+    
 
   }
 
@@ -60,6 +80,7 @@ const App = () => {
     setShowData(event.target.value)
   }
 
+ 
   return (
     <div>
       <h2>Phonebook</h2>
