@@ -76,6 +76,13 @@ const App = () => {
     setShowData(event.target.value)
   }
 
+  const deletePersonHandle = (id,e) => { 
+    console.log(id);
+    e.preventDefault()
+    phoneService.deletePhone(id).then(res=>console.log(res))
+    phoneService.getAll().then(res=>setPersons(res))
+   }
+
  
   return (
     <div>
@@ -84,7 +91,7 @@ const App = () => {
       <h2>add a new</h2>
       <PersonForm onInputNameHandle={onInputNameHandle} onInputNummberHandle={onInputNummberHandle} onSubmitHandle={onSubmitHandle}/>
       <h2>Numbers</h2>
-      <Person filterData={filterData} persons={persons}/>
+      <Person filterData={filterData} persons={persons} deletePersonHandle={deletePersonHandle}/>
     </div>
   )
 }
