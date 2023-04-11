@@ -4,6 +4,7 @@ import blogService from './services/blogs'
 import { Login } from './components/Login'
 import loginService from './services/login'
 import { Newblog } from './components/Newblog'
+import { Notice } from './components/Notice'
 
 
 const App = () => {
@@ -16,6 +17,8 @@ const App = () => {
   const [password,setPassword] = useState('')
 
   const [user,setUser] = useState(null)
+
+  const [station,setStation] = useState('')
 
 
 
@@ -62,6 +65,12 @@ const App = () => {
    }
 
 
+   const getstationHandle = (station) => { 
+      setStation(station)
+      console.log(station);
+    }
+
+
    const logoutHandle = (event) => { 
     event.preventDefault()
     window.localStorage.removeItem('loggedBlogAppUser')
@@ -94,10 +103,6 @@ const App = () => {
     )
 
 
-
-
-
-
   return (
     <div>
       
@@ -107,14 +112,17 @@ const App = () => {
 
       {user !==null && <div>
         <h2>blogs</h2>
+        <Notice station={station}/>
         <p>{`${user.username} logged in`}</p>
         </div>
       }
+
+
       {user !==null && 
       <div>
           {blogs.map(blog =><Blog key={blog.id} blog={blog} />)}
           <button onClick={logoutHandle}>logout</button>
-          <Newblog/>
+          <Newblog getstation={getstationHandle}/>
       </div>}
 
     </div>

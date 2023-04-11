@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import blogService from '../services/blogs'
 
-export const Newblog = () => {
+export const Newblog = ({getstation}) => {
 
     const [title,setTitle] = useState('')
     const [author,setAuthor] = useState('')
     const [url,setUrl] = useState('')
+
+    let station = null
 
     const newBlogHandle = (event) => { 
         event.preventDefault()
@@ -14,7 +16,15 @@ export const Newblog = () => {
             title,
             author,
             url
+        }).then(res=>{station=true
+        getstation(station)} )
+        .catch(res=>{station=false
+            getstation(station)
         })
+
+
+
+       
 
      }
 
