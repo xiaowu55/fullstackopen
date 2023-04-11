@@ -5,7 +5,19 @@ let token = null
 
 const setToken = (newToken) => { 
   token = `bearer ${newToken}`
+  console.log('setToken',token);
  }
+
+const create = async newObject =>{
+  const config = {
+    headers:{Authorization:token}
+  }
+  console.log(newObject);
+  const response = await axios.post(baseUrl,newObject,config)
+  console.log(response);
+  return response.data
+
+}
 
 const getAll = () => {
   const request = axios.get(baseUrl)
@@ -13,4 +25,4 @@ const getAll = () => {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll,setToken }
+export default { getAll,setToken ,create}

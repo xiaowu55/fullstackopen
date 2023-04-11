@@ -3,6 +3,8 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import { Login } from './components/Login'
 import loginService from './services/login'
+import { Newblog } from './components/Newblog'
+
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -39,12 +41,13 @@ const App = () => {
       const user = await loginService.login({
         username,password
       })
-
+      
+      blogService.setToken(user.token)
       window.localStorage.setItem(
         'loggedBlogAppUser',JSON.stringify(user)
       )
 
-
+      
       setUser(user)
       console.log(user);
       setUsername('')
@@ -110,8 +113,9 @@ const App = () => {
       {user !==null && 
       <div>
           {blogs.map(blog =><Blog key={blog.id} blog={blog} />)}
+          <button onClick={logoutHandle}>logout</button>
+          <Newblog/>
       </div>}
-      <button onClick={logoutHandle}>logout</button>
 
     </div>
     
