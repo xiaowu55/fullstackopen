@@ -9,8 +9,6 @@ export const AnecdoteForm = (props) => {
     const dispatch = useDispatch()
 
     const addN = (event) => { 
-
-    
         event.preventDefault()
         let inp = event.target.note.value
         console.log(inp);
