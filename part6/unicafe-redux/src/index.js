@@ -22,6 +22,9 @@ const App = () => {
         store.dispatch({type:'BAD'})
         break
 
+      case 'reset':
+        store.dispatch({type:'RESET'})
+        break
       default:
         break
   
@@ -33,7 +36,7 @@ const App = () => {
       <button onClick={(e)=>change('good')}>good</button> 
       <button onClick={(e)=>change('ok')}>ok</button> 
       <button onClick={(e)=>change('bad')}>bad</button>
-      <button>reset stats</button>
+      <button onClick={(e)=>change('reset')}>reset stats</button>
       <div>good {store.getState().good}</div>
       <div>ok {store.getState().ok}</div>
       <div>bad {store.getState().bad}</div>
