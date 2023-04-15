@@ -9,19 +9,19 @@ const anecdotesAtStart = [
 
 const getId = () => (100000 * Math.random()).toFixed(0)
 
-export const voteAnecdots = (id) =>{
-  return {
-    type:'addVote',
-    id:id
-  }
-}
+// export const voteAnecdots = (id) =>{
+//   return {
+//     type:'addVote',
+//     id:id
+//   }
+// }
 
-export const addNote = (anecdote) =>{
-  return{
-    type:'addN',
-    anecdote:anecdote
-  }
-}
+// export const addNote = (anecdote) =>{
+//   return{
+//     type:'addN',
+//     anecdote:anecdote
+//   }
+// }
 
 const asObject = (anecdote) => {
   return {

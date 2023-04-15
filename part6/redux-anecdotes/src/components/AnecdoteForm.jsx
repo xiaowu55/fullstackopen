@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addNote } from "../reducers/anecdoteReducer";
+import { addNote } from "../redux/store";
 
 import React from 'react'
 
