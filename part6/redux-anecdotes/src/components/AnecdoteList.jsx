@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { voteAnecdots } from '../reducers/anecdoteReducer'
 import { addVote } from '../redux/store'
+import {changeTip, tip} from '../redux/notification'
 
 export const AnecdoteList = () => {
 
@@ -12,6 +13,8 @@ export const AnecdoteList = () => {
     
   const vote = (id) => {
     dispatch(addVote(id))
+    dispatch(tip())
+    setTimeout(()=>dispatch(changeTip('render here notification...')),500)
   }
 
   return (
