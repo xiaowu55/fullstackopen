@@ -31,7 +31,7 @@ reducers:{
         return state.map(anecdote=>anecdote.id===action.payload?{...anecdote,votes:anecdote.votes+1}:{...anecdote})
     },
     addNote(state,action){
-        return state.concat(asObject(action.payload))
+        return state.concat(action.payload)
     },
     setNote(state,action){
         return action.payload
