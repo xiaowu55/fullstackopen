@@ -18,12 +18,20 @@ const notification = createSlice({
 
 export const { tip,changeTip } = notification.actions 
 
+let timeoutID = null;
+
 export const setNotification = (state,time) =>{
     return async (dispatch) =>{
+
+        if(timeoutID!==null){
+            clearTimeout(timeoutID)
+            timeoutID = null
+        }
+
         dispatch(changeTip(state))
-        console.log('time',time);
-        setTimeout(() => {
+        timeoutID =  setTimeout(() => {
             dispatch(tip())
+            timeoutID = null
           }, time)
         
     }
