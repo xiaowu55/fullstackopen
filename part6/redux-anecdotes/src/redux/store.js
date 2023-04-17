@@ -30,6 +30,7 @@ reducers:{
         return action.payload
     }
     
+    
 }
 })
 
@@ -46,6 +47,13 @@ export const createNote = content =>{
     return async dispatch =>{
         const newNote = await noteService.addNew(content)
         dispatch(addNote(newNote))
+    }
+}
+
+export const setVote = id =>{
+    return async (dispatch,getstate) =>{
+        dispatch(addVote(id))
+        await noteService.changeVote(id,getstate().anecdotes.find(e=>e.id===id))
     }
 }
 

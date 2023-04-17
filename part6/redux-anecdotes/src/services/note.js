@@ -16,6 +16,11 @@ const addNew = async (content) => {
     return response.data
 }
 
+const changeVote = async (id,content) =>{
+    console.log('changeVote',content);
+    const response = await axios.put(baseUrl+`/${id}`,content)
+    return response.data
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {getAll,addNew}
+export default {getAll,addNew,changeVote}
