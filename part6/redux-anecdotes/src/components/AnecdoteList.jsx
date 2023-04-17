@@ -20,9 +20,10 @@ export const AnecdoteList = () => {
     
   const vote = (id) => {
     dispatch(setVote(id))
+    console.log(id);
     // dispatch(tip())
     // setTimeout(()=>dispatch(changeTip('render here notification...')),500)
-    dispatch(setNotification(`you voted `, 1000))
+    dispatch(setNotification(`you voted '${anecdotes.find(e=>e.id===id).content}'`, 1000))
   }
 
   return (

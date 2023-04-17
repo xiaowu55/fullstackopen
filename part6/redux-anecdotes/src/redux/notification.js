@@ -8,7 +8,7 @@ const notification = createSlice({
     reducers:{
         tip(state,action){
 
-           return state = 'you voted "IF it  hurts,do it more often"'   
+           return state = 'render here notification"'   
     },
     changeTip(state,action){
         return state = action.payload
