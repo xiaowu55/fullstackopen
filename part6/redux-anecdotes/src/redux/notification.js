@@ -18,4 +18,15 @@ const notification = createSlice({
 
 export const { tip,changeTip } = notification.actions 
 
+export const setNotification = (state,time) =>{
+    return async (dispatch) =>{
+        dispatch(changeTip(state))
+        console.log('time',time);
+        setTimeout(() => {
+            dispatch(tip())
+          }, time)
+        
+    }
+}
+
 export default notification.reducer
