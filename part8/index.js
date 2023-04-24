@@ -129,7 +129,7 @@ const typeDefs = `
         author:String!
         published:Int!
         genres: [String]!
-    ):Book
+    ):Book!
   }
 
   schema {
@@ -167,8 +167,12 @@ const resolvers = {
   Mutation: {
     addBook: (root, args) => {
       const book = { ...args, id: uuid() }
+      const existingAuthor = authors.find((a)=>a.name===args.author)
+      if(!existingAuthor){
+        const newAuthor = { name: args.author, id: uuid() };
+        authors.push(newAuthor);
+      }
       books = books.concat(book)
-      console.log(books);
       return book
     }
   }
