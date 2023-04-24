@@ -130,6 +130,11 @@ const typeDefs = `
         published:Int!
         genres: [String]!
     ):Book!
+    
+    editAuthor(
+        name:String!
+        setBornTo:Int!
+    ):Author
   }
 
   schema {
@@ -174,7 +179,19 @@ const resolvers = {
       }
       books = books.concat(book)
       return book
-    }
+    },
+    editAuthor:(root,args) => { 
+        const newAuthor = {...args}
+        const existingAuthor = authors.find(p=>p.name===newAuthor.name)
+        console.log(newAuthor,existingAuthor);
+        if(!existingAuthor){
+            return null
+        }
+
+        const updateAuthor = {...existingAuthor,born:newAuthor.setBornTo}
+        authors = authors.map(p=>p.name===newAuthor.name?updateAuthor:p)
+        return updateAuthor
+     }
   }
 }
 
